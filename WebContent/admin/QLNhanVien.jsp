@@ -15,7 +15,7 @@
 	<tiles:putAttribute name="header">
 		<div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Danh sách nhân viên</h1>
+                <h1 class="page-header">Danh sách nhân viên Nguyen's here</h1>
             </div>
             <!-- /.col-lg-12  -->
         </div>
