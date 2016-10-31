@@ -7,11 +7,31 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 id="WebApp_ID" version="3.0">
  <display-name>LabTemplate</display-name>
 
- <listener>
- <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
- </listener>
-
- <welcome-file-list>
- <welcome-file>index.jsp</welcome-file>
- </welcome-file-list>
+<listener>
+    <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>DangNhap</servlet-name>
+    <servlet-class>controller.loginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DangNhap</servlet-name>
+    <url-pattern>/dang-nhap</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>do_Login</servlet-name>
+    <servlet-class>controller.doLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>do_Login</servlet-name>
+    <url-pattern>/doLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>do_Logout</servlet-name>
+    <servlet-class>controller.doLogout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>do_Logout</servlet-name>
+    <url-pattern>/doLogout</url-pattern>
+  </servlet-mapping>
 </web-app>

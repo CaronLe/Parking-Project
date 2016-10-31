@@ -1,3 +1,8 @@
+<%@page import="utils.DateUtils"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="model.bean.NhaXe"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bo.NhaXeBO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
@@ -24,16 +29,37 @@
 			<!-- /.col-lg-12  -->
 		</div>
 	</tiles:putAttribute>
-
+	<%
+		NhaXe nhaXe = (NhaXe) request.getAttribute("nhaXeByID");
+			if (request.getAttribute("errorFlag") != null) {
+	%><h3 style="color: red;">Cập nhật thất bại</h3>
+	<%
+		}
+	%>
 	<tiles:putAttribute name="body">
-		<div class="row" >
+		<div class="row">
 			<div class="col-lg-12" style="height: 70%">
-				<form class="form-horizontal">
+				<form class="form-horizontal" role="form"
+					action="<%=request.getContextPath()%>/doSuaThoiGianDongMoCua"
+					method="post">
+					<input type="hidden" name="maNhaXe" value="<%=nhaXe.getMaNhaXe()%>">
 					
 					<div class="form-group">
-						<label class="control-label col-sm-3" style="text-align: left">Nhà xe:</label>
+						<label class="control-label col-sm-3" style="text-align: left">Nhà
+							xe:</label>
 						<div class="col-sm-3">
-							<label>Nhà xe 1</label>
+							<input readonly class="form-control" type="text" name="tenNhaXe"
+								value="<%=nhaXe.getTenNhaXe()%>" class="input-medium" />
+
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-3" style="text-align: left">Địa chỉ:</label>
+						<div class="col-sm-3">
+							<input readonly class="form-control" type="text" name="diaChi"
+								value="<%=nhaXe.getDiaChi()%>" class="input-medium" />
+
 						</div>
 					</div>
 
@@ -41,17 +67,26 @@
 						<label class="control-label col-sm-3" style="text-align: left">Thời
 							gian mở cửa (*):</label>
 						<div class="col-sm-3">
-							<input type="text" name="thoigianmocua" class="form-control"
-								placeholder="Thời gian mở cửa">
+							<input placeholder="Thời gian mở cửa" class="form-control" type="text" name="thoiGianMo"
+							value="<%=nhaXe.getThoiGianMo()%>" class="input-medium" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label col-sm-3" style="text-align: left">Thời
-							gian mở đóng (*):</label>
+							gian đóng cửa (*):</label>
 						<div class="col-sm-3">
-							<input type="text" name="thoigiandongcua" class="form-control"
-								placeholder="Thời gian mở đóng">
+							<input placeholder="Thời gian đóng cửa" class="form-control" type="text" name="thoiGianDong"
+							value="<%=nhaXe.getThoiGianDong()%>" class="input-medium" />
+						</div>
+					</div>
+					<br/>
+					<div class="form-group">
+						<label class="col-lg-4 control-label"></label>
+						<div class="col-md-8">
+							<input type="submit" class="btn btn-info" value="Lưu"> <span></span>
+							<a href="<%=request.getContextPath()%>/showSoLuongXe"
+								class="btn btn-info">Quay lại</a>
 						</div>
 					</div>
 
@@ -62,12 +97,7 @@
 	</tiles:putAttribute>
 
 	<tiles:putAttribute name="footer">
-		<div class="row">
-			<div class="col-lg-6">
-				<button type="button" class="btn btn-info">Lưu</button>
-				<button type="button" class="btn btn-info">Quay lại</button>
-			</div>
-		</div>
+
 	</tiles:putAttribute>
 	<tiles:putAttribute name="javascript-source">
 
