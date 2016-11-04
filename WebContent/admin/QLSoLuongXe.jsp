@@ -42,14 +42,14 @@
 						</tr>
 					</thead>
 					<%
-					 @SuppressWarnings("unchecked")
-					ArrayList<NhaXe> nhaXeList = (ArrayList<NhaXe>) request.getAttribute("nhaXeList");
-					if (nhaXeList != null) {
-						Iterator<NhaXe> list = nhaXeList.iterator();
-						NhaXe nx = null;
-						while (list.hasNext()) {
-						nx = list.next();
-							%>
+						@SuppressWarnings("unchecked")
+								ArrayList<NhaXe> nhaXeList = (ArrayList<NhaXe>) request.getAttribute("nhaXeList");
+								if (nhaXeList != null) {
+									Iterator<NhaXe> list = nhaXeList.iterator();
+									NhaXe nx = null;
+									while (list.hasNext()) {
+										nx = list.next();
+					%>
 					<tbody>
 						<tr>
 							<td><%=nx.getMaNhaXe()%></td>
@@ -58,11 +58,11 @@
 							<td><a href="NhaXe_SuaSoLuongXe?id=<%=nx.getMaNhaXe()%>">Sửa</a></td>
 						</tr>
 						<%
-						}
-					}
-				%>
+							}
+									}
+						%>
 					</tbody>
-					
+
 				</table>
 
 			</div>
@@ -74,7 +74,8 @@
 			<div class="col-lg-12">
 				<div class="col-lg-10"></div>
 				<div class="col-lg-2">
-					<a href="<%=request.getContextPath()%>/showAdmin" class="btn btn-info">Quay lại</a>
+					<a href="<%=request.getContextPath()%>/showAdmin"
+						class="btn btn-info">Quay lại</a>
 				</div>
 			</div>
 		</div>

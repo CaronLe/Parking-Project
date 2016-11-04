@@ -33,7 +33,7 @@
 			<div class="panel panel-info"
 				style="background-color: #CCC !important;">
 				<%
-							VeXe vx = null;
+				VeXe vx = null;
 				%>
 				<div class="panel-heading"
 					style="background-color: #006 !important;">
@@ -57,13 +57,14 @@
 									<div class="col-lg-2">
 										<p>
 											<a class="btn btn-success"
-												href="showVeXeMay">XE MÁY </a>
+												href="showVeXeMay?id=<%=vx.getMaVeXe()%>">XE MÁY </a>
 										</p>
 									</div>
 									<div class="col-lg-4"></div>
 									<div class="col-lg-2">
 										<p>
-											<a class="btn btn-success" href="">XE ĐẠP </a>
+											<a class="btn btn-success"
+												href="">XE ĐẠP </a>
 										</p>
 									</div>
 									<div class="col-lg-2"></div>
@@ -78,7 +79,12 @@
 									</div>
 									<div class="col-lg-4"></div>
 								</div>
-
+								
+							<input type="hidden" name="maNhaXe" value="<%=vx.getMaNhaXe()%>">
+							<input type="hidden" name="trangThai" value="<%=vx.getTrangThai()%>">
+							<input type="hidden" name="anhXe" value="<%=vx.getAnhXe()%>">
+							<input type="hidden" name="giaTien" value="<%=vx.getGiaTien()%>">
+							
 								<div class="form-group">
 									<div class="col-lg-12">
 										<div class="panel-heading"
@@ -91,16 +97,16 @@
 											<tbody>
 												<tr>
 													<td style="font-weight: bold;">Số vé</td>
-													<td></td>
+													<td><%=vx.getMaVeXe()%></td>
 												</tr>
 
 												<tr>
 													<td style="font-weight: bold;">Loại xe</td>
-													<td></td>
+													<td><%=vx.getLoaiXe()%></td>
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giờ vào</td>
-													<td></td>
+													<td><%=vx.getThoiGianVao()%></td>
 												</tr>
 											</tbody>
 										</table>

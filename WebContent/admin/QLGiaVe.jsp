@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@page import="java.util.Iterator"%>
+<%@page import="model.bean.GiaVe"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bo.GiaVeBO"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
 <tiles:insertTemplate template="../template/ad-template.jsp">
 	<!-- DataTables CSS -->
@@ -31,33 +36,50 @@
         					<th rowspan="2">STT</th>
 							<th rowspan="2">TÊN NHÀ XE</th>
 							<th rowspan="2">ĐỊA CHỈ</th>
-							<th colspan="3">XE MÁY </th>						
-							<th colspan="3">XE ĐẠP</th>
+							<th colspan="3">XE ĐẠP </th>						
+							<th colspan="3">XE MÁY</th>
 							<th rowspan="3">CHỨC NĂNG</th>
         				</tr>
         				
         				<tr>
-									<th>Ngày thường</th>
-									<th>Cuối tuần</th>
-									<th>Qua đêm</th>
-									<th>Ngày thường</th>
-									<th>Cuối tuần</th>
-									<th>Qua đêm</th>	
+							<th>Ngày thường</th>
+							<th>Cuối tuần</th>
+							<th>Qua đêm</th>
+							<th>Ngày thường</th>
+							<th>Cuối tuần</th>
+							<th>Qua đêm</th>	
 						</tr>
         			</thead>
+     			
+     				<%
+					 @SuppressWarnings("unchecked")
+					ArrayList<GiaVe> giaVeList = (ArrayList<GiaVe>) request.getAttribute("giaVeList");
+					if (giaVeList != null) {
+						Iterator<GiaVe> list = giaVeList.iterator();
+						GiaVe gv = null;
+						while (list.hasNext()) {
+						gv = list.next();
+							%>
+     			
         			<tbody>
 	        			<tr>
-							<td>1</td>
-							<td>b</td>
-							<td>c</td>
-							<td>1000</td>
-							<td>2000</td>
-							<td>10000</td>
-							<td>500</td>
-							<td>1000</td>
-							<td>5000</td>
-							<td><a href="SuaGiaVe.jsp">Sửa</a></td>
-						</tr>     			
+							<td><%=gv.getMaGiaVe()%></td>
+							<td><%=gv.getTenNhaXe()%></td>
+							<td><%=gv.getDiaChi()%></td>
+							<td><%=gv.getXeDapNgayThuong()%></td>
+							<td><%=gv.getXeDapCuoiTuan()%></td>
+							<td><%=gv.getXeDapQuaDem()%></td>
+							<td><%=gv.getXeMayNgayThuong()%></td>
+							<td><%=gv.getXeMayCuoiTuan()%></td>
+							<td><%=gv.getXeMayQuaDem()%></td>
+							<td><a href="NhaXe_SuaGiaVe?id=<%=gv.getMaGiaVe()%>">Sửa</a></td>
+						</tr> 
+						
+						<%
+						}
+					}
+				%>
+						    			
         			</tbody>
         		</table>
         		
@@ -68,7 +90,10 @@
 	<tiles:putAttribute name="footer">
 		<div class="row">
 			<div class="col-lg-12">
-				<button type="button" class="btn btn-info">Quay lại</button>
+				<div class="col-lg-10"></div>
+				<div class="col-lg-2">
+					<a href="<%=request.getContextPath()%>/showAdmin" class="btn btn-info">Quay lại</a>
+				</div>
 			</div>
 		</div>
 	</tiles:putAttribute>
