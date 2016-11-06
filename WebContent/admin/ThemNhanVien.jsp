@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%String loi = (String)request.getAttribute("loi"); %>
 
 <tiles:insertTemplate template="../template/ad-template.jsp">
 	<!-- DataTables CSS -->
@@ -25,7 +26,7 @@
 	<tiles:putAttribute name="body">
 		<div class="row">
 			<div class="col-lg-12" style="height: 70%">
-				<form class="form-horizontal">
+				<form action="<%=request.getContextPath()%>/ThemNhanVienServlet" method="post" class="form-horizontal" id="fr1" enctype="multipart/form-data">
 					<div class="form-group">
 						<label class="control-label col-sm-2" style="text-align: left">Họ tên:</label>
 						<div class="col-sm-10">
@@ -56,6 +57,38 @@
 								placeholder="Lương">
 						</div>
 					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2" style="text-align: left">Upload:</label>
+						<div class="col-sm-10">
+							<input type="file" name="uploadFile">
+						</div>
+					</div>
+					
+					<div class="form-group">
+					  <div class="col-sm-2"></div>
+					  <div class="col-sm-10">
+                       <div class="alert alert-danger" style="text-align: center" id="myAlert">
+                         <a href="#" class="close">&times;</a>
+                          <%=loi %>
+                       </div>
+                      </div>
+                    </div>
+                    <script type="text/javascript">
+                      
+                      $(document).ready(function(){
+                    	  $(".close").click(function(){
+                              $("#myAlert").alert("close");
+                             });
+                    	  var loi  = <%=loi%>;
+                    	  if(loi==null){
+                    		  $("#myAlert").hide();
+                    	  }
+                    	  else{
+                    		  $("#myAlert").show();
+                    	  }
+                       });
+                     </script>
 
 					<div class="form-group">
 						<label class="control-label col-sm-2" style="text-align: left">Tài khoản:</label>
@@ -68,10 +101,16 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" style="text-align: left">Mật khẩu:</label>
 						<div class="col-sm-10">
-							<input type="text" name="tieude" class="form-control"
+							<input type="text" name="matkhau" class="form-control"
 								placeholder="Mật khẩu">
 						</div>
 					</div>
+					<div class="row" align="center">
+			          <div class="col-lg-12">
+				        <button type="submit" class="btn btn-info" name="ok">Lưu</button>
+				        <a href="<%=request.getContextPath() %>/NhanVienServlet"><button type="button" class="btn btn-info">Quay lại</button></a>
+			          </div>
+		            </div>
 				</form>
 
 			</div>
@@ -79,15 +118,74 @@
 	</tiles:putAttribute>
 
 	<tiles:putAttribute name="footer">
-		<div class="row">
-			<div class="col-lg-12">
-				<button type="button" class="btn btn-info">Lưu</button>
-				<button type="button" class="btn btn-info">Quay lại</button>
-			</div>
-		</div>
+		
 	</tiles:putAttribute>
 	<tiles:putAttribute name="javascript-source">
-
+      <script type="text/javascript">
+	      $(document).ready(function(){
+	    	  $('#fr1').validate({
+	    		  errorPlacement: function(error,element){
+	    			  error.insertAfter(element);
+	    		  },
+	    		  rules:{
+	    			  hoten:{
+	    				  required: true,
+	    				  maxlength: 20
+	    			  },
+	    			  diachi:{
+	    				  required: true,
+	    				  maxlength: 100
+	    			  },
+	    			  sodienthoai:{
+	    				  required: true,
+	    				  digits: true,
+	    				  maxlength: 15
+	    			  },
+	    			  luong:{
+	    				  required: true,
+	    				  max: 2147483647,
+	    				  digits: true
+	    			  },
+	    			  taikhoan:{
+	    				  required: true,
+	    				  maxlength: 20
+	    			  },
+	    			  matkhau:{
+	    				  required: true,
+	    				  maxlength: 20
+	    			  }
+	    		  },
+	    		  messages:{
+	    			  hoten:{
+	    				  required: "<span style='color: red'>Họ tên không được để trống</span>",
+	    				  maxlength: "<span style='color: red'>Tên không được lớn hơn 20 kí tự</span>" 
+	    			  },
+	    			  diachi:{
+	    				  required: "<span style='color: red'>Địa chỉ không được để trống</span>",
+	    				  maxlength: "<span style='color: red'>Địa chỉ không được lớn hơn 100 kí tự</span>"
+	    			  },
+	    			  sodienthoai:{
+	    				  required: "<span style='color: red'>Số điện thoại không được để trống</span>",
+	    				  digits: "<span style='color: red'>Số điện thoại phải là số nguyên dương</span>",
+	    				  maxlength: "<span style='color: red'>Độ dài không vượt quá 15 kí tự</span>"
+	    			  },
+	    			  luong:{
+	    				  required: "<span style='color: red'>Tiền lương không được để trống</span>",
+	    				  max: "<span style='color: red'>Giá tiền không vượt quá 2147483647 VNĐ</span>",
+	    				  digits: "<span style='color: red'>Tiền lương phải là số nguyên dương</span>"
+	    			  },
+	    			  taikhoan:{
+	    				  required: "<span style='color: red'>Tài khoản không được để trống</span>",
+	    				  maxlength: "<span style='color: red'>Tài khoản không được lớn hơn 20 kí tự</span>"
+	    			  },
+	    			  matkhau:{
+	    				  required: "<span style='color: red'>Mật khẩu không được để trống</span>",
+	    				  maxlength: "<span style='color: red'>Mật khẩu không được lớn hơn 20 kí tự</span>"
+	    			  }
+	    		  }
+	    	  });
+	      });
+	   </script>
 	</tiles:putAttribute>
 
 

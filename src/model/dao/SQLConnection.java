@@ -6,38 +6,46 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 public class SQLConnection {
 	private static Connection con = null;
 
 	/**
 	 * <h1>getConnection</h1>Mo ket noi den co so du lieu.
+	 * 
 	 * @return con Connection
-	 * @throws ClassNotFoundException Khong tim duoc driver
-	 * @throws SQLException Khong the mo duoc ket noi.
+	 * @throws ClassNotFoundException
+	 *             Khong tim duoc driver
+	 * @throws SQLException
+	 *             Khong the mo duoc ket noi.
 	 */
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
 			con = DriverManager
-					.getConnection("jdbc:sqlserver://localhost:1443; database=QuanLyNhaXe; username=sa; password=Admin123");
+					.getConnection("jdbc:sqlserver://localhost; database=QuanLyNhaXe;integratedSecurity=True;");
 			System.out.println("Connect sucess");
 		} catch (ClassNotFoundException e) {
 			System.err.println("Can not get SQLServerDriver class !");
 			e.printStackTrace();
+		} catch (SQLServerException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Khong ket noi voi database");
+			e.printStackTrace();
 		} catch (SQLException e) {
-			System.err.println("Can not open connection !");
+			// TODO Auto-generated catch block
+			System.out.println("Khong the mo duoc ket noi");
 			e.printStackTrace();
 		}
-
 		return con;
 	}
 
 	// Dong ket noi
-	public static void closeConnection(Connection conn) {
+	public static void closeConnection(Connection con) {
 		try {
-			if (conn != null) {
-				conn.close();
+			if (con != null) {
+				con.close();
 			}
 		} catch (SQLException e) {
 			System.err.println("Can not close connection !");

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.bean.TaiKhoan;
 
@@ -42,5 +43,55 @@ public class TaiKhoanDAO {
 		}
 
 		return this.TaiKhoan;
+	}
+	public boolean checkTaiKhoan(String tk){
+		con = SQLConnection.getConnection();
+		String sql  = "select TenTaiKhoan from TaiKhoan";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				if(tk.equals(rs.getString("TenTaiKhoan")))return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Loi cau lenh sql");
+		}finally {
+			SQLConnection.closeConnection(this.con);
+			SQLConnection.closePrepareStatement(pstmt);
+			SQLConnection.closeResultSet(rs);
+		}
+		return true;
+	}
+	public void insertTaiKhoan(String tenTaiKhoan,String matKhau){
+		con = SQLConnection.getConnection();
+		String sql = "insert into TaiKhoan(TenTaiKhoan,MatKhau,CapDo) values('"+tenTaiKhoan+"','"+matKhau+"','2')";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			SQLConnection.closeConnection(this.con);
+			SQLConnection.closePrepareStatement(pstmt);
+			SQLConnection.closeResultSet(rs);
+		}
+	}
+	public void deleteTaiKhoan(int maTaiKhoan){
+		con = SQLConnection.getConnection();
+		String sql = "delete from TaiKhoan where MaTaiKhoan="+maTaiKhoan;
+		try {
+			pstmt =con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			con.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			SQLConnection.closeConnection(this.con);
+			SQLConnection.closePrepareStatement(pstmt);
+			SQLConnection.closeResultSet(rs);
+		}
 	}
 }

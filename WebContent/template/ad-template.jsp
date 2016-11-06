@@ -32,7 +32,9 @@
 <link
 	href="<%=request.getContextPath()%>/Resources/fonts/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet">
-
+<script
+		src="<%=request.getContextPath()%>/Resources/jquery/jquery.min.js"></script>
+<tiles:insertAttribute name="javascript-source"></tiles:insertAttribute>
 </head>
 <body>
 	<div id="wrapper">
@@ -47,7 +49,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<%=request.getContextPath() %>/showAdmin">ADMIN</a>
+			<a class="navbar-brand" href="">ADMIN</a>
 		</div>
 		<!-- /.navbar-header -->
 
@@ -60,7 +62,7 @@
 					<li><a href="#"><i class="fa fa-user fa-fw"></i> Thông tin cá nhân</a></li>
 					</li>
 					<li class="divider"></li>
-					<li><a href="<%=request.getContextPath() %>/doLogout"><i class="fa fa-sign-out fa-fw"></i>
+					<li><a href="doLogout" action = "post"><i class="fa fa-sign-out fa-fw"></i>
 							Đăng xuất</a></li>
 				</ul> <!-- /.dropdown-user --></li>
 			<!-- /.dropdown -->
@@ -71,31 +73,27 @@
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
 			
-					<li><a href="<%=request.getContextPath()%>/admin/QLNhanVien.jsp">
+					<li><a href="<%=request.getContextPath()%>/NhanVienServlet">
 						<i class="fa fa-table fa-fw"></i>Quản lý nhân viên</a>
 					</li>
 					
 					<li><a href="#">
 						<i class="fa fa-table fa-fw"></i>Quản lý nhà xe<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="<%=request.getContextPath()%>/showThoiGianDongMo">Thời gian Đóng/ Mở cửa</a></li>
-							<li><a href="<%=request.getContextPath() %>/showSoLuongXe">Số lượng xe</a></li>
-							<li><a href="<%=request.getContextPath()%>/showGiaVe">Giá vé</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/QLThoiGianDongMoCua.jsp">Thời gian Đóng/ Mở cửa</a></li>
+							<li><a href="SoLuongXeServlet">Số lượng xe</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/QLGiaVe.jsp">Giá vé</a></li>
 						</ul> <!-- /.nav-second-level -->
 					</li>
 					
-					<li><a href="<%=request.getContextPath()%>/admin/ThongKe.jsp">
-						<i class="fa fa-table fa-fw"></i>Thống kê</a>
+					<li><a href="">
+						<i class="fa fa-table fa-fw"></i>Thống kê<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe1.jsp">Nhà xe 1</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe2.jsp">Nhà xe 2</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe3.jsp">Nhà xe 3</a></li>
+						</ul> <!-- /.nav-second-level -->
 					</li>
-					
-<!-- 					<li><a href=""> -->
-<!-- 						<i class="fa fa-table fa-fw"></i>Thống kê<span class="fa arrow"></span></a> -->
-<!-- 						<ul class="nav nav-second-level"> -->
-<%-- 							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe1.jsp">Nhà xe 1</a></li> --%>
-<%-- 							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe2.jsp">Nhà xe 2</a></li> --%>
-<%-- 							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe3.jsp">Nhà xe 3</a></li> --%>
-<!-- 						</ul> /.nav-second-level -->
-<!-- 					</li> -->
 					
 				</ul>
 			</div>
@@ -116,29 +114,8 @@
 			</div>
 		</div>
 		
-		<%-- <!-- Page Content -->
-		<div id="page-wrapper">
-			<div class="container-fluid">
-				<tiles:insertAttribute name="content"></tiles:insertAttribute>
-
-				<!--  <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
-                    </div>
-                    <!-- /.col-lg-12 
-                </div>  -->
-				<!-- /.row -->
-			</div>
-			<!-- /.container-fluid -->
-		</div>
-		<!-- /#page-wrapper --> --%>
- 
-	
-	<!-- /#wrapper -->
-	
 	<!-- jQuery -->
-	<script
-		src="<%=request.getContextPath()%>/Resources/jquery/jquery.min.js"></script>
+	
 
 	<!-- Bootstrap Core JavaScript -->
 	<script
@@ -156,6 +133,6 @@
 		src="<%=request.getContextPath()%>/Resources/sb-admin-2/js/sb-admin-2.js"></script>
 		
 	<!--javascript-source attribute  -->
-	<tiles:insertAttribute name="javascript-source"></tiles:insertAttribute>
+	
 </body>
 </html>
