@@ -92,7 +92,7 @@ public class NhanVienDAO {
 			SQLConnection.closeResultSet(rs);
 		}
 	}
-	public void updateNhanVien(int maNhanVien,String hoTen,String diaChi,String soDienThoai,int luong,String matKhau){
+	public void updateNhanVien(int maNhanVien,String hoTen,String diaChi,String soDienThoai,int luong,String maNhaXe,String matKhau){
 		con = SQLConnection.getConnection();
 		int maTaiKhoan = 0;
 		String sql = "select MaTaiKhoan from NhanVien where MaNhanVien="+maNhanVien;
@@ -103,7 +103,7 @@ public class NhanVienDAO {
 				maTaiKhoan = Integer.parseInt(rs.getString("MaTaiKhoan"));
 			}
 			String sql1 = "update TaiKhoan set MatKhau='"+matKhau+"' where MaTaiKhoan="+maTaiKhoan;
-			String sql2 = "update NhanVien set HoTen=N'"+hoTen+"',DiaChi=N'"+diaChi+"',SoDienThoai='"+soDienThoai+"',LuongNhanVien="+luong+" where MaTaiKhoan="+maTaiKhoan;
+			String sql2 = "update NhanVien set HoTen=N'"+hoTen+"',DiaChi=N'"+diaChi+"',SoDienThoai='"+soDienThoai+"',LuongNhanVien="+luong+",MaNhaXe='"+maNhaXe+"' where MaTaiKhoan="+maTaiKhoan;
 			System.out.println(sql2);
 			pstmt = con.prepareStatement(sql1);
 			pstmt.executeUpdate();
@@ -118,7 +118,7 @@ public class NhanVienDAO {
 			SQLConnection.closeResultSet(rs);
 		}
 	}
-	public void insertNhanVien(String tenTaiKhoan,String hoTen,String diaChi,String soDienThoai,int luong,Part filePart){
+	public void insertNhanVien(String tenTaiKhoan,String hoTen,String diaChi,String soDienThoai,int luong,String maNhaXe,Part filePart){
 		con = SQLConnection.getConnection();
 		String sql = "select MaTaiKhoan from TaiKhoan where TenTaiKhoan='"+tenTaiKhoan+"'";
 		int maTaiKhoan=0;
@@ -129,7 +129,7 @@ public class NhanVienDAO {
 				maTaiKhoan = rs.getInt("MaTaiKhoan");
 				System.out.println(maTaiKhoan);
 			}
-			String sql1 = "insert into NhanVien(MaTaiKhoan,HoTen,DiaChi,SoDienThoai,LuongNhanVien,Anh) values(?,?,?,?,?,?)";
+			String sql1 = "insert into NhanVien(MaTaiKhoan,HoTen,DiaChi,SoDienThoai,LuongNhanVien,MaNhaXe,Anh) values(?,?,?,?,?,?,?)";
 			InputStream in = null;
 			if(filePart!=null){	
 				System.out.println(filePart.getName());
@@ -144,7 +144,8 @@ public class NhanVienDAO {
 				pstmt.setString(3, diaChi);
 				pstmt.setString(4, soDienThoai);
 				pstmt.setInt(5, luong);
-				pstmt.setBinaryStream(6, in, (int)filePart.getSize());
+				pstmt.setString(6, maNhaXe);
+				pstmt.setBinaryStream(7, in, (int)filePart.getSize());
 				int row = pstmt.executeUpdate();
 				if(row==0)System.out.println("Loi");
 				con.commit();

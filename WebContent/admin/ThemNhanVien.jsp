@@ -42,6 +42,7 @@
 								placeholder="Địa chỉ">
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<label class="control-label col-sm-2" style="text-align: left">Số điện thoại:</label>
 						<div class="col-sm-10">
@@ -55,6 +56,14 @@
 						<div class="col-sm-10">
 							<input type="number" name="luong" class="form-control"
 								placeholder="Lương">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2" style="text-align: left">Mã nhà xe:</label>
+						<div class="col-sm-10">
+							<input type="text" name="manhaxe" class="form-control"
+								placeholder="Mã nhà xe">
 						</div>
 					</div>
 					
@@ -146,6 +155,10 @@
 	    				  max: 2147483647,
 	    				  digits: true
 	    			  },
+	    			  manhaxe:{
+	    				  required: true,
+	    				  maxlength: 10
+	    			  },
 	    			  taikhoan:{
 	    				  required: true,
 	    				  maxlength: 20
@@ -173,6 +186,10 @@
 	    				  required: "<span style='color: red'>Tiền lương không được để trống</span>",
 	    				  max: "<span style='color: red'>Giá tiền không vượt quá 2147483647 VNĐ</span>",
 	    				  digits: "<span style='color: red'>Tiền lương phải là số nguyên dương</span>"
+	    			  },
+	    			  manhaxe:{
+	    				  required: "<span style='color: red'>Mã nhà xe không được để trống</span>",
+	    				  maxlength: "<span style='color: red'>Mã nhà xe không được lớn hơn 10 kí tự</span>" 
 	    			  },
 	    			  taikhoan:{
 	    				  required: "<span style='color: red'>Tài khoản không được để trống</span>",

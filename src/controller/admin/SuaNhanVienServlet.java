@@ -50,9 +50,10 @@ public class SuaNhanVienServlet extends HttpServlet {
 		String diaChi = request.getParameter("diachi");
 		String soDienThoai = request.getParameter("sodienthoai");
 		int luong = Integer.parseInt(request.getParameter("luong"));
+		String maNhaXe = request.getParameter("manhaxe");
 		String matKhau = request.getParameter("matkhau");
 		NhanVienBO nhanVien = new NhanVienBO();
-		nhanVien.updateNhanVien(maNhanVien, hoTen, diaChi, soDienThoai, luong, matKhau);
+		nhanVien.updateNhanVien(maNhanVien, hoTen, diaChi, soDienThoai, luong, maNhaXe, matKhau);
 		
 		
 		

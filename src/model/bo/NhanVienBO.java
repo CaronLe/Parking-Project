@@ -18,11 +18,11 @@ public class NhanVienBO {
     public void deleteNhanVien(int maNhanVien){
     	nv.deleteNhanVien(maNhanVien);
     }
-    public void updateNhanVien(int maNhanVien,String hoTen,String diaChi,String soDienThoai,int luong,String matKhau){
-    	nv.updateNhanVien(maNhanVien, hoTen, diaChi, soDienThoai, luong, matKhau);
+    public void updateNhanVien(int maNhanVien,String hoTen,String diaChi,String soDienThoai,int luong,String maNhaXe,String matKhau){
+    	nv.updateNhanVien(maNhanVien, hoTen, diaChi, soDienThoai, luong, maNhaXe, matKhau);
     }
-    public void insertNhanVien(String tenTaiKhoan,String hoTen,String diaChi,String soDienThoai,int luong,Part filePart){
-    	nv.insertNhanVien(tenTaiKhoan, hoTen, diaChi, soDienThoai, luong,filePart);
+    public void insertNhanVien(String tenTaiKhoan,String hoTen,String diaChi,String soDienThoai,int luong,String maNhaXe,Part filePart){
+    	nv.insertNhanVien(tenTaiKhoan, hoTen, diaChi, soDienThoai, luong,maNhaXe,filePart);
     }
     public int getMaTaiKhoan(int maNhanVien){
     	return nv.getMaTaiKhoan(maNhanVien);

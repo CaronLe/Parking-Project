@@ -63,9 +63,10 @@ public class ThemNhanVienServlet extends HttpServlet {
 				String diaChi = request.getParameter("diachi");
 				String soDienThoai = request.getParameter("sodienthoai");
 				int luong = Integer.parseInt(request.getParameter("luong"));
+				String maNhaXe = request.getParameter("manhaxe");
 				Part filePart = request.getPart("uploadFile");
 				tkBO.insertTaiKhoan(tenTaiKhoan, matKhau);
-				nvBO.insertNhanVien(tenTaiKhoan, hoTen, diaChi, soDienThoai, luong,filePart);
+				nvBO.insertNhanVien(tenTaiKhoan, hoTen, diaChi, soDienThoai, luong,maNhaXe,filePart);
 				response.sendRedirect("NhanVienServlet");
 			}
 			else {

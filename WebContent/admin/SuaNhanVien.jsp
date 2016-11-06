@@ -50,6 +50,7 @@
 								placeholder="Địa chỉ" value="<%=obj.getDiaChi() %>">
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<label class="control-label col-sm-2" style="text-align: left">Số điện thoại:</label>
 						<div class="col-sm-10">
@@ -63,6 +64,14 @@
 						<div class="col-sm-10">
 							<input type="number" name="luong" class="form-control"
 								placeholder="Lương" value="<%=obj.getLuongNV() %>">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2" style="text-align: left">Mã NX:</label>
+						<div class="col-sm-10">
+							<input type="text" name="manhaxe" class="form-control"
+								placeholder="Mã NX" value="<%=obj.getMaNX() %>">
 						</div>
 					</div>
 
