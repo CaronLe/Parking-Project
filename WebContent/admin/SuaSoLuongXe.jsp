@@ -85,7 +85,25 @@
 	<tiles:putAttribute name="footer">
 	</tiles:putAttribute>
 	<tiles:putAttribute name="javascript-source">
-
+       <script type="text/javascript">
+          $(document).ready(function(){
+        	  $('#fr2').validate({
+        		  errorPlacement: function(error,element){
+        			  error.insertAfter(element);
+        		  },
+        		  rules: {
+        			  soLuongXe: {required: true, maxlength: 20, digits:true }
+        		  },
+        		  messages:{
+        			    luong:{
+        		    	  required: "<span style='color: red'>Số lượng xe không được để trống</span>",
+	    				  max: "<span style='color: red'>Số lượng xe tối đa không vượt quá 10000 chiếc </span>",
+	    				  digits: "<span style='color: red'>Số lượng xe phải là số nguyên dương</span>"
+        		      }
+        		  }
+        	  });
+          });
+       </script>
 	</tiles:putAttribute>
 
 

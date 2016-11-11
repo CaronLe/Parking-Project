@@ -104,8 +104,57 @@
 			</div>
 		</div>
 	</tiles:putAttribute>
-	<tiles:putAttribute name="javascript-source">
-
+<tiles:putAttribute name="javascript-source">
+       <script type="text/javascript">
+          $(document).ready(function(){
+        	  $('#fr2').validate({
+        		  errorPlacement: function(error,element){
+        			  error.insertAfter(element);
+        		  },
+        		  rules: {
+        			  XDngaythuong: {required: true, max: 5000, digits: true},
+        			  XDcuoituan: {required: true, max: 10000, digits: true},
+        			  XDquadem: {required: true, max: 20000, digits: true},
+        			  XMngaythuong: {required: true, max: 10000, digits: true},
+        			  XMcuoituan: {required: true, max: 20000, digits: true},
+        			  XMquadem: {required: true, max: 50000, digits: true},
+        		  },
+        		  messages:{
+        			  XDngaythuong:{
+        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
+	    				  max: "<span style='color: red'>Giá vé không vượt quá 5000 VNĐ</span>",
+	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
+        			  },
+        			  XDcuoituan:{
+        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
+	    				  max: "<span style='color: red'>Giá vé không vượt quá 10000 VNĐ</span>",
+	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
+        			  },
+        			  XDquadem:{
+        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
+	    				  max: "<span style='color: red'>Giá vé không vượt quá 20000 VNĐ</span>",
+	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
+        			  },
+        			  XMngaythuong:{
+        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
+	    				  max: "<span style='color: red'>Giá vé không vượt quá 10000 VNĐ</span>",
+	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
+        			  },
+        			  XMcuoituan:{
+        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
+	    				  max: "<span style='color: red'>Giá vé không vượt quá 20000 VNĐ</span>",
+	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
+        			  },
+        			  XMquadem:{
+        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
+	    				  max: "<span style='color: red'>Giá vé không vượt quá 50000 VNĐ</span>",
+	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
+        			  }
+        		      
+        		  }
+        	  });
+          });
+       </script>
 	</tiles:putAttribute>
 
 
