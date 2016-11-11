@@ -24,7 +24,17 @@ public class GiaVe {
 		this.xeMayCuoiTuan = xeMayCuoiTuan;
 		this.xeMayQuaDem = xeMayQuaDem;
 	}
-	
+	public GiaVe(int maGiaVe, String tenNhaX, int xeDapNgayThuong, int xeDapCuoiTuan, int xeDapQuaDem,
+			int xeMayNgayThuong, int xeMayCuoiTuan, int xeMayQuaDem) {
+		this.maGiaVe = maGiaVe;
+		this.tenNhaXe = tenNhaXe;
+		this.xeDapNgayThuong = xeDapNgayThuong;
+		this.xeDapCuoiTuan = xeDapCuoiTuan;
+		this.xeDapQuaDem = xeDapQuaDem;
+		this.xeMayNgayThuong = xeMayNgayThuong;
+		this.xeMayCuoiTuan = xeMayCuoiTuan;
+		this.xeMayQuaDem = xeMayQuaDem;
+	}
 	public GiaVe(int maGiaVe, int xeDapNgayThuong, int xeDapCuoiTuan, int xeDapQuaDem,
 			int xeMayNgayThuong, int xeMayCuoiTuan, int xeMayQuaDem) {
 		this.maGiaVe = maGiaVe;

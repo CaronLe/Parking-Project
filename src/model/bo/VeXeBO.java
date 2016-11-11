@@ -22,4 +22,8 @@ public class VeXeBO {
 		return vxDAO.getVeXeRa(maVeXe);
 	}
 
+	public static void updateVeXe(int maVeXe) {
+		vxDAO.updateVeXe(maVeXe);
+	}
+
 }

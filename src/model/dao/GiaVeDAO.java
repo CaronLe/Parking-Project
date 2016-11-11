@@ -33,7 +33,6 @@ public class GiaVeDAO {
 				GiaVe = new GiaVe();
 				GiaVe.setMaGiaVe(rs.getInt(1));
 				GiaVe.setTenNhaXe(rs.getString(2));
-				GiaVe.setDiaChi(rs.getString(3));
 				GiaVe.setXeDapNgayThuong(rs.getInt(4));
 				GiaVe.setXeDapCuoiTuan(rs.getInt(5));
 				GiaVe.setXeDapQuaDem(rs.getInt(6));
