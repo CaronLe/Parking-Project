@@ -5,6 +5,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%
+    VeXe veXe = new VeXe(); 
+    if(request.getAttribute("veXe")!=null){
+    	veXe = (VeXe)request.getAttribute("veXe");
+    }
+%>
+
+<%
+    VeXe veXeRa = new VeXe(); 
+    if(request.getAttribute("veXeRa")!=null){
+    	veXeRa = (VeXe)request.getAttribute("veXeRa");
+    }
+%>
 
 <tiles:insertTemplate template="../template/staff-template.jsp">
 	<!-- DataTables CSS -->
@@ -57,13 +70,13 @@
 									<div class="col-lg-2">
 										<p>
 											<a class="btn btn-success"
-												href="showVeXeMay">XE MÁY </a>
+												href="addVeXeMay">XE MÁY </a>
 										</p>
 									</div>
 									<div class="col-lg-4"></div>
 									<div class="col-lg-2">
 										<p>
-											<a class="btn btn-success" href="">XE ĐẠP </a>
+											<a class="btn btn-success" href="addVeXeDap">XE ĐẠP </a>
 										</p>
 									</div>
 									<div class="col-lg-2"></div>
@@ -78,7 +91,6 @@
 									</div>
 									<div class="col-lg-4"></div>
 								</div>
-
 								<div class="form-group">
 									<div class="col-lg-12">
 										<div class="panel-heading"
@@ -91,26 +103,26 @@
 											<tbody>
 												<tr>
 													<td style="font-weight: bold;">Số vé</td>
-													<td></td>
+													<td><%=veXe.getMaVeXe() %></td>
 												</tr>
 
 												<tr>
 													<td style="font-weight: bold;">Loại xe</td>
-													<td></td>
+													<td><%=veXe.getLoaiXe()%></td>
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giờ vào</td>
-													<td></td>
+													<td><%=veXe.getThoiGianVao() %></td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
-
 							</form>
 						</div>
+						
 						<div class=" col-md-9 col-lg-6 ">
-							<form class="form-horizontal" role="form" action="" method="post">
+							<form class="form-horizontal" role="form" action="tinhTienServlet" method="post">
 								<div class="form-group">
 									<div class="col-lg-12"
 										style="font-weight: bold; font-size: 30px; text-align: center;">XE
@@ -121,12 +133,14 @@
 										style="text-align: right; line-height: 35px;">Nhập số
 										vé: </label>
 									<div class="col-lg-6">
-										<input class="form-control" type="text" name="ten" value=""
+										<input class="form-control" type="text" name="mavexe" value=""
 											class="input-medium" />
 									</div>
 									<div class="col-lg-2">
 										<p>
-											<a class="btn btn-success" href="#">TÍNH TIỀN </a>
+										  <button type="submit" class="btn btn-success">
+											TÍNH TIỀN
+											</button>
 										</p>
 									</div>
 
@@ -145,24 +159,24 @@
 											<tbody>
 												<tr>
 													<td style="font-weight: bold;">Số vé</td>
-													<td>B101</td>
+													<td><%= veXeRa.getMaVeXe()%></td>
 												</tr>
 
 												<tr>
 													<td style="font-weight: bold;">Loại xe</td>
-													<td>Xe máy</td>
+													<td><%= veXeRa.getLoaiXe() %></td>
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giờ vào</td>
-													<td>7h30'</td>
+													<td><%= veXeRa.getThoiGianVao() %></td>
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giờ ra</td>
-													<td>10h30'</td>
+													<td><%= veXeRa.getThoiGianRa() %></td>
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giá tiền</td>
-													<td>5000</td>
+													<td><%= veXeRa.getGiaTien() %></td>
 												</tr>
 											</tbody>
 										</table>

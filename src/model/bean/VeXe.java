@@ -6,13 +6,16 @@ public class VeXe {
 	private int maVeXe;
 	private String maNhaXe;
 	private String loaiXe;
-	private Time thoiGianVao;
-	private Time thoiGianRa;
+	private String thoiGianVao;
+	private String thoiGianRa;
 	private Boolean trangThai;
 	private String anhXe;
 	private int giaTien;
-
-	public VeXe(int maVeXe, String maNhaXe, String loaiXe, Time thoiGianVao, Time thoiGianRa, boolean trangThai,
+ 
+	public VeXe(){
+		super();
+	}
+	public VeXe(int maVeXe, String maNhaXe, String loaiXe, String thoiGianVao, String thoiGianRa, boolean trangThai,
 			String anhXe, int giaTien) {
 		this.maVeXe = maVeXe;
 		this.maNhaXe = maNhaXe;
@@ -49,19 +52,19 @@ public class VeXe {
 		this.loaiXe = loaiXe;
 	}
 
-	public Time getThoiGianVao() {
+	public String getThoiGianVao() {
 		return thoiGianVao;
 	}
 
-	public void setThoiGianVao(Time thoiGianVao) {
+	public void setThoiGianVao(String thoiGianVao) {
 		this.thoiGianVao = thoiGianVao;
 	}
 
-	public Time getThoiGianRa() {
+	public String getThoiGianRa() {
 		return thoiGianRa;
 	}
 
-	public void setThoiGianRa(Time thoiGianRa) {
+	public void setThoiGianRa(String thoiGianRa) {
 		this.thoiGianRa = thoiGianRa;
 	}
 

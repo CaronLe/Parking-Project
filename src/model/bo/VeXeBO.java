@@ -4,13 +4,22 @@ import model.bean.VeXe;
 import model.dao.VeXeDAO;
 
 public class VeXeBO {
-	VeXeDAO vxDAO = new VeXeDAO();
+	static VeXeDAO vxDAO = new VeXeDAO();
 
-	public VeXe getVeXeTheoMaVeXe_XeMay(String maVeXe) {
-		return vxDAO.getVeXeTheoMaVeXe_XeMay(maVeXe);
+	public void addVeXeDap() {
+		vxDAO.addVeXeDap();
 	}
-	
-	public VeXe getVeXeTheoMaVeXe_XeDap(String maVeXe) {
-		return vxDAO.getVeXeTheoMaVeXe_XeDap(maVeXe);
+
+	public void addVeXeMay() {
+		vxDAO.addVeXeMay();
 	}
+
+	public static VeXe getVeXe() {
+		return vxDAO.getVeXe();
+	}
+
+	public static VeXe getVeXeRa(int maVeXe) {
+		return vxDAO.getVeXeRa(maVeXe);
+	}
+
 }

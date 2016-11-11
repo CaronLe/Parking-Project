@@ -11,7 +11,7 @@ public class GiaVe {
 	private int xeMayNgayThuong;
 	private int xeMayCuoiTuan;
 	private int xeMayQuaDem;
-
+    
 	public GiaVe(int maGiaVe, String tenNhaXe, String diaChi, int xeDapNgayThuong, int xeDapCuoiTuan, int xeDapQuaDem,
 			int xeMayNgayThuong, int xeMayCuoiTuan, int xeMayQuaDem) {
 		this.maGiaVe = maGiaVe;
