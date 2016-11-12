@@ -107,7 +107,6 @@ public class VeXeDAO {
 		}
 		
 		public void updateVeXe(int maVeXe) {
-			SimpleDateFormat timeFormat1= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			String sql = "select ThoiGianVao from VeXe where MaVeXe = "+maVeXe;
 			String sql1="select * from GiaVe where MaNhaXe=(select MaNhaXe from VeXe where MaVeXe ="+maVeXe+")";
 			String timeIn = null;
@@ -116,10 +115,10 @@ public class VeXeDAO {
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()){
-					timeIn = rs.getString("ThoiGianVao");
+					String time1 = rs.getDate("ThoiGianVao").toString();
+					String time2 = rs.getTime("ThoiGianVao").toString();
+					timeIn = time1+" "+time2;
 					System.out.println(timeIn);
-					System.out.println(rs.getDate("ThoiGianVao"));
-					System.out.println(rs.getTime("ThoiGianVao"));
 				}
 				pstmt = con.prepareStatement(sql1);
 				rs = pstmt.executeQuery();
@@ -138,15 +137,16 @@ public class VeXeDAO {
 			Date timeCurrent=new Date(System.currentTimeMillis());
 			String timeIn1 = "11/23/1993 05:12:34";
 			String timeOut1 = "11/25/1993 05:12:34";
-			SimpleDateFormat timeFormat= new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+			SimpleDateFormat timeFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			
 			String timeOut=timeFormat.format(timeCurrent.getTime());
 			Date thoiGianVao = null;
 			Date thoiGianRa = null;
 			try {
-				thoiGianVao = timeFormat.parse(timeIn1);
-				thoiGianRa = timeFormat.parse(timeOut1);
-				
+				thoiGianVao = timeFormat.parse(timeIn);
+				thoiGianRa = timeFormat.parse(timeOut);
+				int thu = thoiGianRa.getDay();
+                
 				long diff = thoiGianRa.getTime() - thoiGianVao.getTime();
 				
 				long diffSeconds = diff / 1000 % 60;

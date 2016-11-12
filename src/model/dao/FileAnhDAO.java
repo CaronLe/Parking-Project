@@ -23,6 +23,7 @@ public class FileAnhDAO {
 			file = rs.getBlob("Anh");
 		}
 		fileData = file.getBytes(1,(int)file.length());
+		System.out.println(file.length());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

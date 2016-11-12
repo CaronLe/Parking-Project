@@ -80,9 +80,9 @@
 					<li><a href="#">
 						<i class="fa fa-table fa-fw"></i>Quản lý nhà xe<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="<%=request.getContextPath()%>/admin/QLThoiGianDongMoCua.jsp">Thời gian Đóng/ Mở cửa</a></li>
-							<li><a href="SoLuongXeServlet">Số lượng xe</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/QLGiaVe.jsp">Giá vé</a></li>
+							<li><a href="<%=request.getContextPath()%>/showThoiGianDongMo">Thời gian Đóng/ Mở cửa</a></li>
+							<li><a href="<%=request.getContextPath()%>/showSoLuongXe">Số lượng xe</a></li>
+							<li><a href="<%=request.getContextPath()%>/showGiaVe">Giá vé</a></li>
 						</ul> <!-- /.nav-second-level -->
 					</li>
 					
