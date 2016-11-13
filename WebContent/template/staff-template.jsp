@@ -73,7 +73,7 @@
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
 
-					<li><a href="<%=request.getContextPath() %>/staff/QuanLyXe.jsp"> <i class="fa fa-table fa-fw"></i>Quản lý
+					<li><a href="<%=request.getContextPath() %>/showStaff"> <i class="fa fa-table fa-fw"></i>Quản lý
 							nhà xe
 					</a></li>
 

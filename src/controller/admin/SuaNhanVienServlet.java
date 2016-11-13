@@ -55,8 +55,6 @@ public class SuaNhanVienServlet extends HttpServlet {
 		NhanVienBO nhanVien = new NhanVienBO();
 		nhanVien.updateNhanVien(maNhanVien, hoTen, diaChi, soDienThoai, luong, maNhaXe, matKhau);
 		
-		
-		
 		response.sendRedirect("NhanVienServlet");
 	}
 
