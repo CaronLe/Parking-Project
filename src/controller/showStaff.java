@@ -1,12 +1,16 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import model.bo.NhaXeBO;
 import utils.MyUtils;
 
 /**
@@ -35,7 +39,13 @@ public class showStaff extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MyUtils.forward(getServletContext(), request, response, "/staff/QuanLyXe.jsp");
+		
+		NhaXeBO nxBO = new NhaXeBO();
+		int soChoTrong = nxBO.soChoTrong();
+		request.setAttribute("soChoTrong", soChoTrong);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("staff/QuanLyXe.jsp");
+		rd.forward(request, response);
 	}
 
 }

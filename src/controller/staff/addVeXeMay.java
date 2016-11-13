@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.connector.Request;
 
 import model.bean.VeXe;
+import model.bo.NhaXeBO;
 import model.bo.VeXeBO;
 
 /**
@@ -47,6 +48,10 @@ public class addVeXeMay extends HttpServlet {
 		
 		VeXeBO veXeBO = new VeXeBO();
 		veXeBO.addVeXeMay();
+		
+		NhaXeBO nxBO = new NhaXeBO();
+		int soChoTrong = nxBO.soChoTrong();
+		request.setAttribute("soChoTrong", soChoTrong);
 		
 	    VeXe veXe = VeXeBO.getVeXe();
 	    System.out.println(veXe.getMaVeXe());

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.VeXe;
+import model.bo.NhaXeBO;
 import model.bo.VeXeBO;
 
 /**
@@ -47,7 +48,10 @@ public class addVeXeDap extends HttpServlet {
 		veXeBO.addVeXeDap();
 		
 		VeXe veXe = VeXeBO.getVeXe();
-	    System.out.println(veXe.getMaVeXe());
+		NhaXeBO nxBO = new NhaXeBO();
+		int soChoTrong = nxBO.soChoTrong();
+		request.setAttribute("soChoTrong", soChoTrong);
+		
 	    request.setAttribute("veXe", veXe);
 	    RequestDispatcher rd = request.getRequestDispatcher("/staff/QuanLyXe.jsp");
 	    rd.forward(request, response);

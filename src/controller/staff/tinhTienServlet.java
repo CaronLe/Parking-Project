@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.VeXe;
+import model.bo.NhaXeBO;
 import model.bo.VeXeBO;
 
 /**
@@ -48,6 +49,9 @@ public class tinhTienServlet extends HttpServlet {
 		int maVeXe = Integer.parseInt(request.getParameter("mavexe"));
 		VeXeBO.updateVeXe(maVeXe);
 		
+		NhaXeBO nxBO = new NhaXeBO();
+		int soChoTrong = nxBO.soChoTrong();
+		request.setAttribute("soChoTrong", soChoTrong);
 		
 		VeXe veXe = VeXeBO.getVeXeRa(maVeXe);
 		System.out.println(veXe.getMaVeXe());

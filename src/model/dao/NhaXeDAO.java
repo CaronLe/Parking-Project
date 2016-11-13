@@ -183,5 +183,34 @@ public class NhaXeDAO {
 
 		return result;
 	}
-
+	public int soChoTrong(){
+		int choFalse = 0;
+		int choTrue = 0;
+		int soLuongXe = 0;
+		String sql1 = "select SoLuongXe from NhaXe where MaNhaXe = 'KE01'";
+		String sql2 = "select TrangThai from VeXe where TrangThai=1";
+		con = SQLConnection.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql1);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				soLuongXe = rs.getInt("SoLuongXe");
+			}
+			pstmt = con.prepareStatement(sql2);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				choTrue++;
+			}
+			choFalse = soLuongXe - choTrue;
+			System.out.println(choFalse);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return choFalse;
+	}
+   public static void main(String[] args) {
+	NhaXeDAO nx = new NhaXeDAO();
+	nx.soChoTrong();
+}
 }

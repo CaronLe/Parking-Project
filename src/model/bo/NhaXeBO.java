@@ -31,5 +31,7 @@ public class NhaXeBO {
 	public int updateThoiGianDongMoCua(NhaXe tg) {
 		return nxDAO.updateThoiGianDongMoCua(tg);
 	}
-
+	public int soChoTrong(){
+		return nxDAO.soChoTrong();
+	}
 }

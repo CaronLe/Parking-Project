@@ -11,7 +11,7 @@
     	veXe = (VeXe)request.getAttribute("veXe");
     }
 %>
-
+<% int soChoTrong = (Integer)request.getAttribute("soChoTrong"); %>
 <%
     VeXe veXeRa = new VeXe(); 
     if(request.getAttribute("veXeRa")!=null){
@@ -87,7 +87,7 @@
 										trống:</label>
 									<div class="col-lg-4">
 										<input readonly class="form-control" type="text"
-											name="ngayDangKy" value="230" class="input-medium" />
+											name="sochotrong" value="<%=soChoTrong %>" class="input-medium" />
 									</div>
 									<div class="col-lg-4"></div>
 								</div>
