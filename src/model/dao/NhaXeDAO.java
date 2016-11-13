@@ -202,7 +202,10 @@ public class NhaXeDAO {
 				choTrue++;
 			}
 			choFalse = soLuongXe - choTrue;
-			System.out.println(choFalse);
+			String sql3 = "update NhaXe set ChoTrong="+choFalse+" where MaNhaXe = 'KE01'";
+			pstmt = con.prepareStatement(sql3);
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
