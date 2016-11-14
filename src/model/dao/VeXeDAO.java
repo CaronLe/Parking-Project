@@ -32,7 +32,7 @@ public class VeXeDAO {
 			try {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "KE01");
-				pstmt.setString(2, "XeDap");
+				pstmt.setString(2, "Xe Dap");
 				pstmt.setString(3, toDay);
 				pstmt.setString(4, null);
 				pstmt.setBoolean(5, true);
@@ -58,7 +58,7 @@ public class VeXeDAO {
 			try {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "KE01");
-				pstmt.setString(2, "XeMay");
+				pstmt.setString(2, "Xe May");
 				pstmt.setString(3, timeIn);
 				pstmt.setString(4, null);
 				pstmt.setBoolean(5, true);
@@ -197,10 +197,10 @@ public class VeXeDAO {
 		
 		public static long nguyenTuan(String loaiXe,GiaVe giaVe){
 			long tongTien = 0;
-			if(loaiXe.equals("XeMay")){
+			if(loaiXe.equals("Xe May")){
 				tongTien = 7 * giaVe.getXeMayQuaDem();
 			}
-			if(loaiXe.equals("XeDap")){
+			if(loaiXe.equals("Xe Dap")){
 				tongTien = 7 * giaVe.getXeDapQuaDem();
 			}
 			return tongTien;
@@ -208,9 +208,9 @@ public class VeXeDAO {
 		
 		public static long kiemTraTrongTuan(int thuVao,int thuRa,long soNgay,long soGio,int gioVao,int gioRa,String loaiXe,GiaVe giaVe){
 			long tienVe = 0 ;
-			if(thuVao<6&&thuRa<6&&thuVao<thuRa){
+			if(thuVao<6&&thuRa<6&&thuVao<=thuRa){
 				tienVe = ngayThuong(soNgay, soGio, gioVao, loaiXe,giaVe );
-
+               System.out.println("so 1");
 			}
 			if(thuVao<6&&thuRa>=6){
 				int soNgayNT = 5 - thuVao;
@@ -218,9 +218,11 @@ public class VeXeDAO {
 				int soNgayCT = thuRa - 6;
 				int soGioCT = gioRa - 6;
 				tienVe = ngayThuong(soNgayNT, soGioNT, gioVao, loaiXe, giaVe)+cuoiTuan(soNgayCT, soGioCT, 6, loaiXe, giaVe);
+				System.out.println("so 2");
 			}
 			if(thuVao>=6&&thuRa>=6&&soNgay<=2){
 				tienVe = cuoiTuan(soNgay, soGio, gioVao, loaiXe, giaVe);
+				System.out.println("so 3");
 			}
 			if(thuVao>=6&&thuRa<6){
 				int soNgayNT = thuRa - 1;
@@ -228,8 +230,9 @@ public class VeXeDAO {
 				int soNgayCT = 7 - thuVao;
 				int soGioCT = 30 - gioVao;
 				tienVe = ngayThuong(soNgayNT, soGioNT, 6, loaiXe, giaVe)+cuoiTuan(soNgayCT, soGioCT, gioVao, loaiXe, giaVe);
+				System.out.println("so 4");
 			}
-			if(thuVao>=thuRa&&thuVao<6){
+			if(thuVao>=thuRa&&thuVao<6&&soNgay>2){
 				int soNgayNT1 = 5 - thuVao;
 				int soGioNT1 = 30 - gioVao;
 				int soNgayNT2 = thuRa - 1;
@@ -237,6 +240,10 @@ public class VeXeDAO {
 				
 				tienVe = ngayThuong(soNgayNT1, soGioNT1, gioVao, loaiXe, giaVe)+cuoiTuan(loaiXe, giaVe)
 				+ngayThuong(soNgayNT2, soGioNT2, 6, loaiXe, giaVe);
+				System.out.println(ngayThuong(soNgayNT1, soGioNT1, gioVao, loaiXe, giaVe));
+				System.out.println(cuoiTuan(loaiXe, giaVe));
+				System.out.println(ngayThuong(soNgayNT2, soGioNT2, 6, loaiXe, giaVe));
+				System.out.println("so 5");
 			}
 			if(thuVao>=thuRa&&thuVao>=6&& soNgay>2){
 				int soNgayCT1 = 7 - thuVao;
@@ -246,6 +253,7 @@ public class VeXeDAO {
 				
 				tienVe = cuoiTuan(soNgayCT1, soGioCT1, gioVao, loaiXe, giaVe)+ngayThuong(loaiXe, giaVe)
 				+cuoiTuan(soNgayCT2, soGioCT2, gioVao, loaiXe, giaVe);
+				System.out.println("so 6");
 			}
 			return tienVe;
 		}
@@ -254,36 +262,36 @@ public class VeXeDAO {
 			long tongTien = 0;
 			if(soNgay==0){
 				if(soGio+gioVao<22){
-					if(loaiXe.equals("XeMay")){
+					if(loaiXe.equals("Xe May")){
 						tongTien = giaVe.getXeMayNgayThuong();
 					}
-					if(loaiXe.equals("XeDap")){
+					if(loaiXe.equals("Xe Dap")){
 						tongTien = giaVe.getXeDapNgayThuong();
 					}
 				}
 				else{
-					if(loaiXe.equals("XeMay")){
+					if(loaiXe.equals("Xe May")){
 						tongTien = giaVe.getXeMayQuaDem();
 					}
-					if(loaiXe.equals("XeDap")){
+					if(loaiXe.equals("Xe Dap")){
 						tongTien = giaVe.getXeDapQuaDem();
 					}
 				}
 			}
 			else{
 				if(soGio+gioVao<22){
-					if(loaiXe.equals("XeMay")){
+					if(loaiXe.equals("Xe May")){
 						tongTien = soNgay*giaVe.getXeMayQuaDem()+giaVe.getXeMayNgayThuong();
 					}
-					if(loaiXe.equals("XeDap")){
+					if(loaiXe.equals("Xe Dap")){
 						tongTien = soNgay*giaVe.getXeMayQuaDem()+giaVe.getXeDapNgayThuong();
 					}
 				}
 				else{
-					if(loaiXe.equals("XeMay")){
+					if(loaiXe.equals("Xe May")){
 						tongTien = (soNgay+1)*giaVe.getXeMayQuaDem();
 					}
-					if(loaiXe.equals("XeDap")){
+					if(loaiXe.equals("Xe Dap")){
 						tongTien = (soNgay+1)*giaVe.getXeDapQuaDem();
 					}
 				}
@@ -293,10 +301,10 @@ public class VeXeDAO {
 		
 		public static long ngayThuong(String loaiXe,GiaVe giaVe){
 			long tongTien = 0;
-				if(loaiXe.equals("XeMay")){
+				if(loaiXe.equals("Xe May")){
 					tongTien = 5*giaVe.getXeMayQuaDem();
 				}
-				if(loaiXe.equals("XeDap")){
+				if(loaiXe.equals("Xe Dap")){
 					tongTien = 5*giaVe.getXeDapQuaDem();
 				}
 			return tongTien;
@@ -306,7 +314,7 @@ public class VeXeDAO {
 			long tongTien = 0;
 			if(soNgay==0){
 				if(soGio+gioVao<22){
-					if(loaiXe.equals("XeMay")){
+					if(loaiXe.equals("Xe May")){
 						tongTien = giaVe.getXeMayCuoiTuan();
 					}
 					if(loaiXe.equals("XeDap")){
@@ -314,28 +322,28 @@ public class VeXeDAO {
 					}
 				}
 				else{
-					if(loaiXe.equals("XeMay")){
+					if(loaiXe.equals("Xe May")){
 						tongTien = giaVe.getXeMayQuaDem();
 					}
-					if(loaiXe.equals("XeDap")){
+					if(loaiXe.equals("Xe Dap")){
 						tongTien = giaVe.getXeDapQuaDem();
 					}
 				}
 			}
 			else{
 				if(soGio+gioVao<22){
-					if(loaiXe.equals("XeMay")){
+					if(loaiXe.equals("Xe May")){
 						tongTien = soNgay*giaVe.getXeMayQuaDem()+giaVe.getXeMayCuoiTuan();
 					}
-					if(loaiXe.equals("XeDap")){
+					if(loaiXe.equals("Xe Dap")){
 						tongTien = soNgay*giaVe.getXeMayQuaDem()+giaVe.getXeDapCuoiTuan();
 					}
 				}
 				else{
-					if(loaiXe.equals("XeMay")){
+					if(loaiXe.equals("Xe May")){
 						tongTien = (soNgay+1)*giaVe.getXeMayQuaDem();
 					}
-					if(loaiXe.equals("XeDap")){
+					if(loaiXe.equals("Xe Dap")){
 						tongTien = (soNgay+1)*giaVe.getXeDapQuaDem();
 					}
 				}
@@ -345,11 +353,11 @@ public class VeXeDAO {
 		
 		public static long cuoiTuan(String loaiXe,GiaVe giaVe){
 			long tongTien = 0;
-				if(loaiXe.equals("XeMay")){
-					tongTien = 2*giaVe.getXeMayCuoiTuan();
+				if(loaiXe.equals("Xe May")){
+					tongTien = 2*giaVe.getXeMayQuaDem();
 				}
-				if(loaiXe.equals("XeDap")){
-					tongTien = 2*giaVe.getXeDapCuoiTuan();
+				if(loaiXe.equals("Xe Dap")){
+					tongTien = 2*giaVe.getXeDapQuaDem();
 				}
 			return tongTien;
 		}

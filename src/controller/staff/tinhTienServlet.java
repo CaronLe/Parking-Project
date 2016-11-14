@@ -46,6 +46,7 @@ public class tinhTienServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/plain; charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
+		
 		int maVeXe = Integer.parseInt(request.getParameter("mavexe"));
 		VeXeBO.updateVeXe(maVeXe);
 		

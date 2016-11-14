@@ -11,7 +11,12 @@
     	veXe = (VeXe)request.getAttribute("veXe");
     }
 %>
-<% int soChoTrong = (Integer)request.getAttribute("soChoTrong"); %>
+<% 
+ int soChoTrong = 0;
+if(request.getAttribute("soChoTrong")!=null){
+	soChoTrong = (Integer)request.getAttribute("soChoTrong");
+}
+%>
 <%
     VeXe veXeRa = new VeXe(); 
     if(request.getAttribute("veXeRa")!=null){
@@ -119,6 +124,31 @@
 									</div>
 								</div>
 							</form>
+							<div class="form-group">
+									<div class="col-lg-12">
+<!-- 										<div class="panel-heading" -->
+<!-- 											style="background-color: #69C !important;"> -->
+<!-- 											<h3 class="panel-title" style="color:; text-align: center;"> ẢNH XE</h3> -->
+<!-- 										</div> -->
+										<table class="table table-bordered table-hover" id=""
+											style="background-color: #FFF !important;">
+											<tbody>
+												<tr>
+													<td><img width="80px" height="80px" alt=""
+						src="<%=request.getContextPath()%>/Resources/images/xe/anh1.jpg"></td>
+													<td><img width="80px" height="80px" alt=""
+						src="<%=request.getContextPath()%>/Resources/images/xe/anh2.jpg"></td>
+													<td><img width="80px" height="80px" alt=""
+						src="<%=request.getContextPath()%>/Resources/images/xe/anh3.jpg"></td>
+													<td><img width="80px" height="80px" alt=""
+						src="<%=request.getContextPath()%>/Resources/images/xe/anh4.jpg"></td>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</form>
+							
 						</div>
 						
 						<div class=" col-md-9 col-lg-6 ">
@@ -149,6 +179,7 @@
 
 								<div class="form-group">
 									<div class="col-lg-12">
+									<br/><br/> <br/>
 										<div class="panel-heading"
 											style="background-color: #69C !important;">
 											<h3 class="panel-title" style="color:; text-align: center;">VÉ
@@ -188,13 +219,6 @@
 				</div>
 
 				<div class="panel-footer" style="background-color: #006 !important;">
-					<!-- 					<a data-original-title="Broadcast Message" data-toggle="tooltip" -->
-					<!-- 						type="button" class="btn btn-sm btn-primary"> <i -->
-					<!-- 						class="fa fa-envelope"></i> -->
-					<!-- 					</a> <span class="pull-right"> <a -->
-					<!-- 						data-original-title="Remove this user" data-toggle="tooltip" -->
-					<!-- 						type="button" class="btn btn-sm btn-info"> Quay lại </a> -->
-					<!-- 					</span> -->
 				</div>
 			</div>
 		</div>
