@@ -20,7 +20,6 @@ public class VeXeDAO {
 	private ResultSet rs = null;
 
 	private VeXe VeXe = null;
-	static int c = 0;
 	
 		public void addVeXeDap() {
 			Date today=new Date(System.currentTimeMillis());

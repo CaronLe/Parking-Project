@@ -1,3 +1,6 @@
+<%@page import="com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array"%>
+<%@page import="java.util.Random"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="utils.DateUtils"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="model.bean.VeXe"%>
@@ -6,22 +9,22 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%
-    VeXe veXe = new VeXe(); 
-    if(request.getAttribute("veXe")!=null){
-    	veXe = (VeXe)request.getAttribute("veXe");
-    }
-%>
-<% 
- int soChoTrong = 0;
-if(request.getAttribute("soChoTrong")!=null){
-	soChoTrong = (Integer)request.getAttribute("soChoTrong");
-}
+	VeXe veXe = new VeXe();
+	if (request.getAttribute("veXe") != null) {
+		veXe = (VeXe) request.getAttribute("veXe");
+	}
 %>
 <%
-    VeXe veXeRa = new VeXe(); 
-    if(request.getAttribute("veXeRa")!=null){
-    	veXeRa = (VeXe)request.getAttribute("veXeRa");
+	VeXe veXeRa = new VeXe();
+    if (request.getAttribute("veXeRa") != null) {
+	veXeRa = (VeXe) request.getAttribute("veXeRa");
     }
+%>
+<%
+	int soChoTrong = 0;
+	if (request.getAttribute("soChoTrong") != null) {
+		soChoTrong = (Integer) request.getAttribute("soChoTrong");
+	}
 %>
 
 <tiles:insertTemplate template="../template/staff-template.jsp">
@@ -51,7 +54,7 @@ if(request.getAttribute("soChoTrong")!=null){
 			<div class="panel panel-info"
 				style="background-color: #CCC !important;">
 				<%
-							VeXe vx = null;
+					VeXe vx = null;
 				%>
 				<div class="panel-heading"
 					style="background-color: #006 !important;">
@@ -74,8 +77,7 @@ if(request.getAttribute("soChoTrong")!=null){
 									<div class="col-lg-2"></div>
 									<div class="col-lg-2">
 										<p>
-											<a class="btn btn-success"
-												href="addVeXeMay">XE MÁY </a>
+											<a class="btn btn-success" href="addVeXeMay">XE MÁY </a>
 										</p>
 									</div>
 									<div class="col-lg-4"></div>
@@ -92,7 +94,8 @@ if(request.getAttribute("soChoTrong")!=null){
 										trống:</label>
 									<div class="col-lg-4">
 										<input readonly class="form-control" type="text"
-											name="sochotrong" value="<%=soChoTrong %>" class="input-medium" />
+											name="sochotrong" value="<%=soChoTrong%>"
+											class="input-medium" />
 									</div>
 									<div class="col-lg-4"></div>
 								</div>
@@ -108,7 +111,7 @@ if(request.getAttribute("soChoTrong")!=null){
 											<tbody>
 												<tr>
 													<td style="font-weight: bold;">Số vé</td>
-													<td><%=veXe.getMaVeXe() %></td>
+													<td><%=veXe.getMaVeXe()%></td>
 												</tr>
 
 												<tr>
@@ -117,7 +120,7 @@ if(request.getAttribute("soChoTrong")!=null){
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giờ vào</td>
-													<td><%=veXe.getThoiGianVao() %></td>
+													<td><%=veXe.getThoiGianVao()%></td>
 												</tr>
 											</tbody>
 										</table>
@@ -125,34 +128,53 @@ if(request.getAttribute("soChoTrong")!=null){
 								</div>
 							</form>
 							<div class="form-group">
-									<div class="col-lg-12">
-<!-- 										<div class="panel-heading" -->
-<!-- 											style="background-color: #69C !important;"> -->
-<!-- 											<h3 class="panel-title" style="color:; text-align: center;"> ẢNH XE</h3> -->
-<!-- 										</div> -->
-										<table class="table table-bordered table-hover" id=""
-											style="background-color: #FFF !important;">
-											<tbody>
-												<tr>
-													<td><img width="80px" height="80px" alt=""
-						src="<%=request.getContextPath()%>/Resources/images/xe/anh1.jpg"></td>
-													<td><img width="80px" height="80px" alt=""
-						src="<%=request.getContextPath()%>/Resources/images/xe/anh2.jpg"></td>
-													<td><img width="80px" height="80px" alt=""
-						src="<%=request.getContextPath()%>/Resources/images/xe/anh3.jpg"></td>
-													<td><img width="80px" height="80px" alt=""
-						src="<%=request.getContextPath()%>/Resources/images/xe/anh4.jpg"></td>
+								<div class="col-lg-12">
+									<!-- 										<div class="panel-heading" -->
+									<!-- 											style="background-color: #69C !important;"> -->
+									<!-- 											<h3 class="panel-title" style="color:; text-align: center;"> ẢNH XE</h3> -->
+									<!-- 										</div> -->
+									<table class="table table-bordered table-hover" id=""
+										style="background-color: #FFF !important;">
+										<tbody>
+											<tr>
+												<%
+												     ArrayList<String> anh = null;
+												     int soAnh = 0;
+													 if(request.getAttribute("anhXeMay")!=null||request.getAttribute("anhXeDap")!=null){
+														 if(request.getAttribute("anhXeMay")!=null){
+															 anh = (ArrayList<String>)request.getAttribute("anhXeMay");
+															 soAnh = (Integer)request.getAttribute("soXeMay");
+														 }
+														 else{
+															 anh = (ArrayList<String>)request.getAttribute("anhXeDap");
+															 soAnh = (Integer)request.getAttribute("soXeDap");
+														 }
+													        	Random n = new Random();
+																int x = n.nextInt(4);
+																int y = n.nextInt(4);
+																while (y == x) {
+																	y = n.nextInt(4);
+																}
+															
+												%>
+												<td><img width="150px" height="90px" alt=""
+													src="<%=anh.get(x)%>"></td>
+												<td><img width="150px" height="90px" alt=""
+													src="<%=anh.get(y)%>"></td>
+											</tr>
+                                             <%} %>
+										</tbody>
 
-											</tbody>
-										</table>
-									</div>
+									</table>
 								</div>
+							</div>
 							</form>
-							
+
 						</div>
-						
+
 						<div class=" col-md-9 col-lg-6 ">
-							<form class="form-horizontal" role="form" action="tinhTienServlet" method="post">
+							<form class="form-horizontal" role="form"
+								action="tinhTienServlet" method="post">
 								<div class="form-group">
 									<div class="col-lg-12"
 										style="font-weight: bold; font-size: 30px; text-align: center;">XE
@@ -168,9 +190,8 @@ if(request.getAttribute("soChoTrong")!=null){
 									</div>
 									<div class="col-lg-2">
 										<p>
-										  <button type="submit" class="btn btn-success">
-											TÍNH TIỀN
-											</button>
+											<button type="submit" class="btn btn-success">TÍNH
+												TIỀN</button>
 										</p>
 									</div>
 
@@ -179,7 +200,7 @@ if(request.getAttribute("soChoTrong")!=null){
 
 								<div class="form-group">
 									<div class="col-lg-12">
-									<br/><br/> <br/>
+										<br /> <br /> <br />
 										<div class="panel-heading"
 											style="background-color: #69C !important;">
 											<h3 class="panel-title" style="color:; text-align: center;">VÉ
@@ -190,24 +211,24 @@ if(request.getAttribute("soChoTrong")!=null){
 											<tbody>
 												<tr>
 													<td style="font-weight: bold;">Số vé</td>
-													<td><%= veXeRa.getMaVeXe()%></td>
+													<td><%=veXeRa.getMaVeXe()%></td>
 												</tr>
 
 												<tr>
 													<td style="font-weight: bold;">Loại xe</td>
-													<td><%= veXeRa.getLoaiXe() %></td>
+													<td><%=veXeRa.getLoaiXe()%></td>
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giờ vào</td>
-													<td><%= veXeRa.getThoiGianVao() %></td>
+													<td><%=veXeRa.getThoiGianVao()%></td>
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giờ ra</td>
-													<td><%= veXeRa.getThoiGianRa() %></td>
+													<td><%=veXeRa.getThoiGianRa()%></td>
 												</tr>
 												<tr>
 													<td style="font-weight: bold;">Giá tiền</td>
-													<td><%= veXeRa.getGiaTien() %></td>
+													<td><%=veXeRa.getGiaTien()%></td>
 												</tr>
 											</tbody>
 										</table>

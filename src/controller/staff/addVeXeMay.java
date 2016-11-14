@@ -1,6 +1,7 @@
 package controller.staff;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,6 +53,21 @@ public class addVeXeMay extends HttpServlet {
 		NhaXeBO nxBO = new NhaXeBO();
 		int soChoTrong = nxBO.soChoTrong();
 		request.setAttribute("soChoTrong", soChoTrong);
+		
+		ArrayList<String> anhXeMay = new ArrayList<String>();
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh1.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh2.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh3.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh4.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh5.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh6.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh7.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh8.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh9.jpg");
+		anhXeMay.add(request.getContextPath() + "/Resources/images/xemay/anh10.jpg");
+		int soXeMay = anhXeMay.size();
+		request.setAttribute("soXeMay", soXeMay);
+		request.setAttribute("anhXeMay", anhXeMay);
 		
 	    VeXe veXe = VeXeBO.getVeXe();
 	    System.out.println(veXe.getMaVeXe());

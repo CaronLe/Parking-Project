@@ -47,16 +47,19 @@ public class tinhTienServlet extends HttpServlet {
 		response.setContentType("text/plain; charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		int maVeXe = Integer.parseInt(request.getParameter("mavexe"));
-		VeXeBO.updateVeXe(maVeXe);
+		int maVeXe = 0;
+		if(request.getParameter("mavexe")!=null||request.getParameter("mavexe")!=""){
+			maVeXe = Integer.parseInt(request.getParameter("mavexe"));
+			VeXeBO.updateVeXe(maVeXe);
+			VeXe veXe = VeXeBO.getVeXeRa(maVeXe);
+			request.setAttribute("veXeRa", veXe);
+		}
+		
 		
 		NhaXeBO nxBO = new NhaXeBO();
 		int soChoTrong = nxBO.soChoTrong();
 		request.setAttribute("soChoTrong", soChoTrong);
 		
-		VeXe veXe = VeXeBO.getVeXeRa(maVeXe);
-		System.out.println(veXe.getMaVeXe());
-		request.setAttribute("veXeRa", veXe);
 		RequestDispatcher rd = request.getRequestDispatcher("/staff/QuanLyXe.jsp");
 		rd.forward(request, response);
 	}
