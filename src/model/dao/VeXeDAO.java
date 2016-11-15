@@ -171,13 +171,16 @@ public class VeXeDAO {
 				
 				if(soNgay<7){
 					tienVe =  kiemTraTrongTuan(thuVao, thuRa, soNgay, soGio, gioVao, gioRa, loaiXe, giaVe);
+					System.out.println("Trong tuần = "+kiemTraTrongTuan(thuVao, thuRa, soNgay, soGio, gioVao, gioRa, loaiXe, giaVe));
 				}
 				else{
 					long soTuan = soNgay/7;
 					long ngayDu = soNgay%7;
 					tienVe = soTuan*nguyenTuan(loaiXe, giaVe)+kiemTraTrongTuan(thuVao, thuRa, ngayDu, soGio, gioVao, gioRa, loaiXe, giaVe);
+					System.out.println(soTuan+" Tuần = "+soTuan*nguyenTuan(loaiXe, giaVe)+", Trong tuần = "
+					+kiemTraTrongTuan(thuVao, thuRa, ngayDu, soGio, gioVao, gioRa, loaiXe, giaVe));
+					System.out.println("Gia ve la: "+tienVe);
 				}
-				System.out.println("Gia ve la: "+tienVe);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -209,7 +212,6 @@ public class VeXeDAO {
 			long tienVe = 0 ;
 			if(thuVao<6&&thuRa<6&&thuVao<=thuRa){
 				tienVe = ngayThuong(soNgay, soGio, gioVao, loaiXe,giaVe );
-               System.out.println("so 1");
 			}
 			if(thuVao<6&&thuRa>=6){
 				int soNgayNT = 5 - thuVao;
@@ -217,11 +219,9 @@ public class VeXeDAO {
 				int soNgayCT = thuRa - 6;
 				int soGioCT = gioRa - 6;
 				tienVe = ngayThuong(soNgayNT, soGioNT, gioVao, loaiXe, giaVe)+cuoiTuan(soNgayCT, soGioCT, 6, loaiXe, giaVe);
-				System.out.println("so 2");
 			}
 			if(thuVao>=6&&thuRa>=6&&soNgay<=2){
 				tienVe = cuoiTuan(soNgay, soGio, gioVao, loaiXe, giaVe);
-				System.out.println("so 3");
 			}
 			if(thuVao>=6&&thuRa<6){
 				int soNgayNT = thuRa - 1;
@@ -229,7 +229,6 @@ public class VeXeDAO {
 				int soNgayCT = 7 - thuVao;
 				int soGioCT = 30 - gioVao;
 				tienVe = ngayThuong(soNgayNT, soGioNT, 6, loaiXe, giaVe)+cuoiTuan(soNgayCT, soGioCT, gioVao, loaiXe, giaVe);
-				System.out.println("so 4");
 			}
 			if(thuVao>=thuRa&&thuVao<6&&soNgay>2){
 				int soNgayNT1 = 5 - thuVao;
@@ -238,13 +237,9 @@ public class VeXeDAO {
 				int soGioNT2 = gioRa - 6;
 				
 				tienVe = ngayThuong(soNgayNT1, soGioNT1, gioVao, loaiXe, giaVe)+cuoiTuan(loaiXe, giaVe)
-				+ngayThuong(soNgayNT2, soGioNT2, 6, loaiXe, giaVe);
-				System.out.println(ngayThuong(soNgayNT1, soGioNT1, gioVao, loaiXe, giaVe));
-				System.out.println(cuoiTuan(loaiXe, giaVe));
-				System.out.println(ngayThuong(soNgayNT2, soGioNT2, 6, loaiXe, giaVe));
-				System.out.println("so 5");
+				+ngayThuong(soNgayNT2, soGioNT2, 6, loaiXe, giaVe);	
 			}
-			if(thuVao>=thuRa&&thuVao>=6&& soNgay>2){
+			if(thuVao>=thuRa&&thuVao>=6&& soNgay>5){
 				int soNgayCT1 = 7 - thuVao;
 				int soGioCT1 = 30 - gioVao;
 				int soNgayCT2 = thuRa - 6;
@@ -252,7 +247,6 @@ public class VeXeDAO {
 				
 				tienVe = cuoiTuan(soNgayCT1, soGioCT1, gioVao, loaiXe, giaVe)+ngayThuong(loaiXe, giaVe)
 				+cuoiTuan(soNgayCT2, soGioCT2, gioVao, loaiXe, giaVe);
-				System.out.println("so 6");
 			}
 			return tienVe;
 		}
@@ -283,7 +277,7 @@ public class VeXeDAO {
 						tongTien = soNgay*giaVe.getXeMayQuaDem()+giaVe.getXeMayNgayThuong();
 					}
 					if(loaiXe.equals("Xe Dap")){
-						tongTien = soNgay*giaVe.getXeMayQuaDem()+giaVe.getXeDapNgayThuong();
+						tongTien = soNgay*giaVe.getXeDapQuaDem()+giaVe.getXeDapNgayThuong();
 					}
 				}
 				else{
@@ -335,7 +329,7 @@ public class VeXeDAO {
 						tongTien = soNgay*giaVe.getXeMayQuaDem()+giaVe.getXeMayCuoiTuan();
 					}
 					if(loaiXe.equals("Xe Dap")){
-						tongTien = soNgay*giaVe.getXeMayQuaDem()+giaVe.getXeDapCuoiTuan();
+						tongTien = soNgay*giaVe.getXeDapQuaDem()+giaVe.getXeDapCuoiTuan();
 					}
 				}
 				else{

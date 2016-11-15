@@ -150,10 +150,10 @@
 															 soAnh = (Integer)request.getAttribute("soXeDap");
 														 }
 													        	Random n = new Random();
-																int x = n.nextInt(4);
-																int y = n.nextInt(4);
+																int x = n.nextInt(soAnh);
+																int y = n.nextInt(soAnh);
 																while (y == x) {
-																	y = n.nextInt(4);
+																	y = n.nextInt(soAnh);
 																}
 															
 												%>
