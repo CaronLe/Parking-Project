@@ -1,6 +1,17 @@
+<%@page import="utils.DateUtils"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="model.bean.ThongKe"%>
+<%@page import="model.bo.ThongKeBO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%
+	ThongKe thongKe = new ThongKe();
+	if (request.getAttribute("thongKe") != null) {
+		thongKe = (ThongKe) request.getAttribute("thongKe");
+	}
+%>
 
 <tiles:insertTemplate template="../template/staff-template.jsp">
 	<!-- DataTables CSS -->
@@ -30,13 +41,12 @@
 						style="text-align: right; line-height: 35px;">Thời gian:</label>
 					<div class="col-lg-3">
 						<input readonly class="form-control" type="text" name="ngayDangKy"
-							value="" class="input-medium" />
+							value="<%=DateUtils.formatDatetime(new Date())%>" class="input-medium" />
 					</div>
 				</div>
 
 				<div>
-				<br/>
-				<br/>
+					<br /> <br />
 					<table class="table table-striped table-bordered table-hover"
 						id="dataTables-dsSinhVien">
 						<thead>
@@ -48,9 +58,9 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>200</td>
-								<td>150</td>
-								<td>500.000</td>
+								<td><%=thongKe.getSoLuotVao()%></td>
+								<td><%=thongKe.getSoLuotRa()%></td>
+								<td><%=thongKe.getTongTien()%></td>
 							</tr>
 						</tbody>
 					</table>
@@ -62,7 +72,11 @@
 	<tiles:putAttribute name="footer">
 		<div class="row">
 			<div class="col-lg-12">
-				<button type="button" class="btn btn-info">Quay lại</button>
+				<div class="col-lg-10"></div>
+				<div class="col-lg-2">
+					<a href="<%=request.getContextPath()%>/showStaff"
+						class="btn btn-info">Quay lại</a>
+				</div>
 			</div>
 		</div>
 	</tiles:putAttribute>

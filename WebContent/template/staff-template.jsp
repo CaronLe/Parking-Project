@@ -78,7 +78,7 @@
 					</a></li>
 
 
-					<li><a href="<%=request.getContextPath() %>/staff/ThongKe.jsp"> <i class="fa fa-table fa-fw"></i>Thống kê
+					<li><a href="<%=request.getContextPath() %>/thongKeServlet"> <i class="fa fa-table fa-fw"></i>Thống kê
 					</a></li>
 
 				</ul>

@@ -1,3 +1,8 @@
+<%@page import="utils.DateUtils"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="model.bean.GiaVe"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bo.GiaVeBO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
@@ -24,11 +29,24 @@
 			<!-- /.col-lg-12  -->
 		</div>
 	</tiles:putAttribute>
+	
+	<%
+		GiaVe giaVe = (GiaVe) request.getAttribute("giaVeByID");
+			if (request.getAttribute("errorFlag") != null) {
+	%><h3 style="color: red;">Cập nhật thất bại</h3>
+	<%
+		}
+	%>
 
 	<tiles:putAttribute name="body">
 		<div class="row" >
 			<div class="col-lg-12">
-				<form class="form-horizontal">
+				<form class="form-horizontal"role="form" id="er3"
+					action="<%=request.getContextPath()%>/doSuaGiaVe"
+					method="post">
+					
+					<input type="hidden" name="maGiaVe" value="<%=giaVe.getMaGiaVe()%>">
+					
 					<div class="col-sm-6">
 					<div class="form-group">
 						<div class="col-sm-6">
@@ -39,23 +57,23 @@
 					<div class="form-group">
 						<label class="control-label col-sm-4" style="text-align: left">Ngày Thường (*):</label>
 						<div class="col-sm-6">
-							<input type="text" name="XDngaythuong" class="form-control"
-								placeholder="Ngày thường">
+							<input type="text" name="xeDapNgayThuong" class="form-control"
+								placeholder="Ngày thường" value="<%=giaVe.getXeDapNgayThuong()%>">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label col-sm-4" style="text-align: left">Cuối tuần (*):</label>
 						<div class="col-sm-6">
-							<input type="text" name="XDcuoituan" class="form-control"
-								placeholder="Cuối tuần">
+							<input type="text" name="xeDapCuoiTuan" class="form-control"
+								placeholder="Cuối tuần" value="<%=giaVe.getXeDapCuoiTuan()%>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" style="text-align: left">Qua đêm (*):</label>
 						<div class="col-sm-6">
-							<input type="text" name="XDquadem" class="form-control"
-								placeholder="Qua đêm">
+							<input type="text" name="xeDapQuaDem" class="form-control"
+								placeholder="Qua đêm" value="<%=giaVe.getXeDapQuaDem()%>">
 						</div>
 					</div>
 					</div>
@@ -70,25 +88,35 @@
 					<div class="form-group">
 						<label class="control-label col-sm-4" style="text-align: left">Ngày Thường (*):</label>
 						<div class="col-sm-6">
-							<input type="text" name="XMngaythuong" class="form-control"
-								placeholder="Ngày thường">
+							<input type="text" name="xeMayNgayThuong" class="form-control"
+								placeholder="Ngày thường" value="<%=giaVe.getXeMayNgayThuong()%>">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label col-sm-4" style="text-align: left">Cuối tuần (*):</label>
 						<div class="col-sm-6">
-							<input type="text" name="XMcuoituan" class="form-control"
-								placeholder="Cuối tuần">
+							<input type="text" name="xeMayCuoiTuan" class="form-control"
+								placeholder="Cuối tuần" value="<%=giaVe.getXeMayCuoiTuan()%>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" style="text-align: left">Qua đêm (*):</label>
 						<div class="col-sm-6">
-							<input type="text" name="XMquadem" class="form-control"
-								placeholder="Qua đêm">
+							<input type="text" name="xeMayQuaDem" class="form-control"
+								placeholder="Qua đêm" value="<%=giaVe.getXeMayQuaDem()%>">
 						</div>
 					</div>
+					<br/><br/>
+					<div class="form-group">
+						<label class="col-lg-3 control-label"></label>
+						<div class="col-md-8">
+							<input type="submit" class="btn btn-info" value="Lưu"> <span></span>
+							<a href="<%=request.getContextPath()%>/showGiaVe"
+								class="btn btn-info">Quay lại</a>
+						</div>
+					</div>
+					
 					</div>
 				</form>
 
@@ -97,60 +125,54 @@
 	</tiles:putAttribute>
 
 	<tiles:putAttribute name="footer">
-		<div class="row">
-			<div class="col-lg-12">
-				<button type="button" class="btn btn-info">Lưu</button>
-				<button type="button" class="btn btn-info">Quay lại</button>
-			</div>
-		</div>
+
 	</tiles:putAttribute>
-<tiles:putAttribute name="javascript-source">
-       <script type="text/javascript">
+	<tiles:putAttribute name="javascript-source">
+		<script type="text/javascript">
           $(document).ready(function(){
-        	  $('#fr2').validate({
+        	  $('#er3').validate({
         		  errorPlacement: function(error,element){
         			  error.insertAfter(element);
         		  },
         		  rules: {
-        			  XDngaythuong: {required: true, max: 5000, digits: true},
-        			  XDcuoituan: {required: true, max: 10000, digits: true},
-        			  XDquadem: {required: true, max: 20000, digits: true},
-        			  XMngaythuong: {required: true, max: 10000, digits: true},
-        			  XMcuoituan: {required: true, max: 20000, digits: true},
-        			  XMquadem: {required: true, max: 50000, digits: true},
+        			  xeDapNgayThuong: {required: true, digits: true, max: 10000},
+        			  xeDapCuoiTuan: {required: true, digits: true, max: 15000},
+        			  xeDapQuaDem: {required: true, digits: true, max: 20000},
+        			  xeMayNgayThuong: {required: true, digits: true, max: 20000},
+        			  xeMayCuoiTuan: {required: true, digits: true, max: 25000},
+        			  xeMayQuaDem: {required: true, digits: true, max: 30000},
         		  },
         		  messages:{
-        			  XDngaythuong:{
-        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
-	    				  max: "<span style='color: red'>Giá vé không vượt quá 5000 VNĐ</span>",
-	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
+        			  xeDapNgayThuong:{
+        				  required: "<span style='color: red'>Không được để trống</span>",
+        				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>",
+	    				  max: "<span style='color: red'>Không lớn hơn 10000 VNĐ</span>"
         			  },
-        			  XDcuoituan:{
-        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
-	    				  max: "<span style='color: red'>Giá vé không vượt quá 10000 VNĐ</span>",
-	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
-        			  },
-        			  XDquadem:{
-        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
-	    				  max: "<span style='color: red'>Giá vé không vượt quá 20000 VNĐ</span>",
-	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
-        			  },
-        			  XMngaythuong:{
-        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
-	    				  max: "<span style='color: red'>Giá vé không vượt quá 10000 VNĐ</span>",
-	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
-        			  },
-        			  XMcuoituan:{
-        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
-	    				  max: "<span style='color: red'>Giá vé không vượt quá 20000 VNĐ</span>",
-	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
-        			  },
-        			  XMquadem:{
-        				  required: "<span style='color: red'>Giá vé không được để trống</span>",
-	    				  max: "<span style='color: red'>Giá vé không vượt quá 50000 VNĐ</span>",
-	    				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>"
-        			  }
-        		      
+        			  xeDapCuoiTuan:{
+        				  required: "<span style='color: red'>Không được để trống</span>",
+        				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>",
+	    				  max: "<span style='color: red'>Không lớn hơn 15000 VNĐ</span>"
+        		      },
+        		      xeDapQuaDem:{
+        		    	  required: "<span style='color: red'>Không được để trống</span>",
+        				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>",
+	    				  max: "<span style='color: red'>Không lớn hơn 20000 VNĐ</span>"
+        		      },
+        		      xeMayNgayThuong:{
+        		    	  required: "<span style='color: red'>Không được để trống</span>",
+        				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>",
+	    				  max: "<span style='color: red'>Không lớn hơn 20000 VNĐ</span>"
+        		      },
+        		      xeMayCuoiTuan:{
+        		    	  required: "<span style='color: red'>Không được để trống</span>",
+        				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>",
+	    				  max: "<span style='color: red'>Không lớn hơn 25000 VNĐ</span>"
+        		      },
+        		      xeMayQuaDem:{
+        		    	  required: "<span style='color: red'>Không được để trống</span>",
+        				  digits: "<span style='color: red'>Giá vé phải là số nguyên dương</span>",
+	    				  max: "<span style='color: red'>Không lớn hơn 30000 VNĐ</span>"
+        		      }
         		  }
         	  });
           });

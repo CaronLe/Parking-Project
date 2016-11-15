@@ -1,12 +1,8 @@
-<%@page import="utils.DateUtils"%>
-<%@page import="java.util.Iterator"%>
 <%@page import="model.bean.NhaXe"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="model.bo.NhaXeBO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-
 <tiles:insertTemplate template="../template/ad-template.jsp">
 	<!-- DataTables CSS -->
 	<link
@@ -41,10 +37,8 @@
 	<tiles:putAttribute name="body">
 		<div class="row">
 			<div class="col-lg-12" style="height: 70%">
-				<form class="form-horizontal" role="form"
-					action="<%=request.getContextPath()%>/doSuaSoLuongXe"
-					method="post">
-
+				<form action="<%=request.getContextPath()%>/doSuaSoLuongXe"
+					method="post" class="form-horizontal" id="er1">
 					<input type="hidden" name="maNhaXe" value="<%=nhaXe.getMaNhaXe()%>">
 
 					<div class="form-group">
@@ -63,7 +57,6 @@
 							<input placeholder="Số lượng xe tối đa" class="form-control"
 								type="text" name="soLuongXe" value="<%=nhaXe.getSoLuongXe()%>"
 								class="input-medium" />
-
 						</div>
 					</div>
 
@@ -85,25 +78,30 @@
 	<tiles:putAttribute name="footer">
 	</tiles:putAttribute>
 	<tiles:putAttribute name="javascript-source">
-       <script type="text/javascript">
-          $(document).ready(function(){
-        	  $('#fr2').validate({
-        		  errorPlacement: function(error,element){
-        			  error.insertAfter(element);
-        		  },
-        		  rules: {
-        			  soLuongXe: {required: true, maxlength: 20, digits:true }
-        		  },
-        		  messages:{
-        			    luong:{
-        		    	  required: "<span style='color: red'>Số lượng xe không được để trống</span>",
-	    				  max: "<span style='color: red'>Số lượng xe tối đa không vượt quá 10000 chiếc </span>",
+		<script type="text/javascript">
+	      $(document).ready(function(){
+	    	  $('#er1').validate({
+	    		  errorPlacement: function(error,element){
+	    			  error.insertAfter(element);
+	    		  },
+	    		  rules:{
+	    			
+	    			  soLuongXe:{
+	    				  required: true,
+// 	    				  max: 10000,
+	    				  digits: true
+	    			  }
+	    		  },
+	    		  messages:{
+	    			  soLuongXe:{
+	    				  required: "<span style='color: red'>Số lượng xe không được để trống</span>",
+// 	    				  max: "<span style='color: red'>Số lượng xe tối đa là 10000 chiếc</span>",
 	    				  digits: "<span style='color: red'>Số lượng xe phải là số nguyên dương</span>"
-        		      }
-        		  }
-        	  });
-          });
-       </script>
+	    			  }
+	    		  }
+	    	  });
+	      });
+	   </script>
 	</tiles:putAttribute>
 
 

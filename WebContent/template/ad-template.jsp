@@ -86,13 +86,8 @@
 						</ul> <!-- /.nav-second-level -->
 					</li>
 					
-					<li><a href="">
+					<li><a href="<%=request.getContextPath()%>/admin/ThongKe.jsp">
 						<i class="fa fa-table fa-fw"></i>Thống kê<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe1.jsp">Nhà xe 1</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe2.jsp">Nhà xe 2</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/ThongKeNhaXe3.jsp">Nhà xe 3</a></li>
-						</ul> <!-- /.nav-second-level -->
 					</li>
 					
 				</ul>
