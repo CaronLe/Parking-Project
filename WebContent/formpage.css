@@ -1,0 +1,12 @@
+body{
+    background: #EEEEEE ! important ;
+}
+
+.panel{
+	margin-top: 50px;
+	padding: 20px 20px;
+}
+
+.form-control{
+	margin: 20px 20px 0 0;
+}
